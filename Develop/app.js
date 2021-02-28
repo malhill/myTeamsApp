@@ -66,49 +66,144 @@ const render = require("./lib/htmlRenderer");
 
 let teamBuilder = [];
 
-const inputManager = [
+const Manager = [
     {
         name: "managerName",
         message: "Enter your name:",
         type: "input",
+        validate: function (answer) {
+            if (answer === '') {
+                return "Name required.";
+            }
+            return true;
+        },
     },
     {
         name: "managerId",
         message: "Enter your id:",
         type: "input",
+        validate: function (answer) {
+            if (answer === '') {
+                return "ID required.";
+            }
+            return true;
+        },
     },
     {
         name: "managerEmail",
         message: "Enter your email:",
         type: "input",
+        validate: function (answer) {
+            if (answer === '') {
+                return "Email required.";
+            }
+            return true;
+        },
     },
     {
         name: "managerOffice",
         message: "Enter your office number:",
         type: "input",
+        validate: function (answer) {
+            if (answer === '') {
+                return "Office number required.";
+            }
+            return true;
+        },
     },
 ];
 
 const Engineer = [
     {
-        name: "managerName",
+        name: "engineerName",
         message: "Enter your name:",
         type: "input",
+        validate: function (answer) {
+            if (answer === '') {
+                return "Name required.";
+            }
+            return true;
+        },
     },
     {
-        name: "managerId",
+        name: "engineerId",
         message: "Enter your id:",
         type: "input",
+        validate: function (answer) {
+            if (answer === '') {
+                return "ID required.";
+            }
+            return true;
+        },
     },
     {
-        name: "managerEmail",
+        name: "engineerEmail",
         message: "Enter your email:",
         type: "input",
+        validate: function (answer) {
+            if (answer === '') {
+                return "Email required.";
+            }
+            return true;
+        },
     },
     {
-        name: "managerOffice",
-        message: "Enter your office number:",
+        name: "engineerOffice",
+        message: "Enter your github username:",
         type: "input",
+        validate: function (answer) {
+            if (answer === '') {
+                return "Username required.";
+            }
+            return true;
+        },
+    },
+];
+
+const internIntern = [
+    {
+        name: "internName",
+        message: "Enter your name:",
+        type: "input",
+        validate: function (answer) {
+            if (answer === '') {
+                return "Name required.";
+            }
+            return true;
+        },
+    },
+    {
+        name: "internId",
+        message: "Enter your id:",
+        type: "input",
+        validate: function (answer) {
+            if (answer === '') {
+                return "ID required.";
+            }
+            return true;
+        },
+    },
+    {
+        name: "internEmail",
+        message: "Enter your email:",
+        type: "input",
+        validate: function (answer) {
+            if (answer === '') {
+                return "Email required.";
+            }
+            return true;
+        },
+    },
+    {
+        name: "internOffice",
+        message: "Enter your current school:",
+        type: "input",
+        validate: function (answer) {
+            if (answer === '') {
+                return "School required.";
+            }
+            return true;
+        },
     },
 ];
 
