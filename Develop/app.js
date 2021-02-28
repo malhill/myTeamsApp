@@ -14,8 +14,6 @@ const render = require("./lib/htmlRenderer");
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
 
-
-
 // After the user has input all employees desired, call the `render` function (required
 // above) and pass in an array containing all employee objects; the `render` function will
 // generate and return a block of HTML including templated divs for each employee!
@@ -35,3 +33,88 @@ const render = require("./lib/htmlRenderer");
 // for further information. Be sure to test out each class and verify it generates an
 // object with the correct structure and methods. This structure will be crucial in order
 // for the provided `render` function to work! ```
+
+// GIVEN a command-line application that accepts user input
+
+// WHEN I am prompted for my team members and their information
+// THEN an HTML file is generated that displays a nicely formatted team roster based on user input
+
+// WHEN I click on an email address in the HTML
+// THEN my default email program opens and populates the TO field of the email with the address
+
+// WHEN I click on the GitHub username
+// THEN that GitHub profile opens in a new tab
+
+// (Array #1)
+// WHEN I start the application
+// THEN I am prompted to enter the team manager’s name, employee ID, email address, and office number
+
+// (Array #2)
+// WHEN I enter the team manager’s name, employee ID, email address, and office number
+// THEN I am presented with a menu with the option to add an engineer or an intern or to finish building my team
+
+// (Array #3)
+// WHEN I select the engineer option
+// THEN I am prompted to enter the engineer’s name, ID, email, and GitHub username, and I am taken back to the menu
+
+// (Array #4)
+// WHEN I select the intern option
+// THEN I am prompted to enter the intern’s name, ID, email, and school, and I am taken back to the menu
+
+// WHEN I decide to finish building my team
+// THEN I exit the application, and the HTML is generated
+
+let teamBuilder = [];
+
+const inputManager = [
+    {
+        name: "managerName",
+        message: "Enter your name:",
+        type: "input",
+    },
+    {
+        name: "managerId",
+        message: "Enter your id:",
+        type: "input",
+    },
+    {
+        name: "managerEmail",
+        message: "Enter your email:",
+        type: "input",
+    },
+    {
+        name: "managerOffice",
+        message: "Enter your office number:",
+        type: "input",
+    },
+];
+
+const Engineer = [
+    {
+        name: "managerName",
+        message: "Enter your name:",
+        type: "input",
+    },
+    {
+        name: "managerId",
+        message: "Enter your id:",
+        type: "input",
+    },
+    {
+        name: "managerEmail",
+        message: "Enter your email:",
+        type: "input",
+    },
+    {
+        name: "managerOffice",
+        message: "Enter your office number:",
+        type: "input",
+    },
+];
+
+function writeToHTML() {
+    console.log('Heres your new file!');
+    render(teamBuilder);
+    fs.writeFile('team.html', render(teamBuilder))
+}
+writeToHTML();
