@@ -8,6 +8,7 @@ The goal for this project is to create a webpage that provides basic employee in
 
 ## General 
 * For this project we were given test parameters that allowed us to create javascript functions (in lib folder). Assets contain the instructions for the project, example images, and the screenshot/video showing how the app works. 
+* Needed to find acceptance criteria, copied it into app.js
 
 ## Javascript
 * Created constructs according to file name

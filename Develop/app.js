@@ -64,9 +64,20 @@ const render = require("./lib/htmlRenderer");
 // WHEN I decide to finish building my team
 // THEN I exit the application, and the HTML is generated
 
+
+// PSEUDO CODE
+
+// Create init() function that uses inquirer to prompt for a manager, final question questin in manger array should ask if they want more employees (yes or no)
+    // .then() of manager should use the manager constructon to create a new manager (set that equatl to avariable) then push to your team array
+    // check the response to the more team memebers questions --> if yes, call function addTeam if no, call function to write file
+    // if adding team what type of team memeber then conditional for each type
+    // if intern --> call intern functin that prompts intern questions with the last question being do you want more 
+
+
+
 let teamBuilder = [];
 
-const Manager = [
+const inputManager = [
     {
         name: "managerName",
         message: "Enter your name:",
@@ -111,9 +122,14 @@ const Manager = [
             return true;
         },
     },
+    {
+        name: 'finished',
+        message: 'Do you want another team member?',
+        type: 'confirm',
+    },
 ];
 
-const Engineer = [
+const inputEngineer = [
     {
         name: "engineerName",
         message: "Enter your name:",
@@ -158,9 +174,14 @@ const Engineer = [
             return true;
         },
     },
+    {
+        name: 'finished',
+        message: 'Do you want another team member?',
+        type: 'confirm',
+    },
 ];
 
-const internIntern = [
+const inputIntern = [
     {
         name: "internName",
         message: "Enter your name:",
@@ -205,11 +226,87 @@ const internIntern = [
             return true;
         },
     },
+    {
+        name: 'finished',
+        message: 'Do you want another team member?',
+        type: 'confirm',
+    },
 ];
 
+const createIntern = () => {
+    inquirer
+        .prompt(inputIntern) 
+        .then(response => {
+            let newIntern = new Intern (response.internName, response.internId, response.internEmail, response.internOffice);
+            teamBuilder.push(newIntern)
+            if (response.finished === true) {
+                addEmployee();
+            } else {
+                writeToHTML();
+                console.log(response);
+            };
+        });
+};
+
+
+const createEngineer = () => {
+    inquirer
+        .prompt(inputEngineer) 
+        .then(response => {
+            let newEngineer = new Engineer (response.engineerName, response.engineerId, response.engineerEmail, response.engineerOffice);
+            teamBuilder.push(newEngineer)
+            if (response.finished === true) {
+                addEmployee();
+            } else {
+                writeToHTML();
+                console.log(response);
+            };
+        });
+};
+
+function addEmployee() {
+    inquirer
+        .prompt([         
+        {
+            name: 'teamMember',
+            message: 'What type of team member do you want?',
+            type: 'list',
+            choices: ['Engineer', 'Intern', 'None'], 
+        },
+        ])
+        .then(response => {
+            if (response.teamMember === 'Engineer') {
+                createEngineer();
+            } else if (response.teamMember === 'Intern'){
+                createIntern();
+            } else {
+                writeToHTML();
+                console.log(response);
+            }
+        });
+
+};
+
+// reference: Use this
+function init() {
+    inquirer
+        .prompt(inputManager)
+        .then(response => {
+            // .then({})
+            console.log(response);
+            let newManager = new Manager (response.managerName, response.managerId, response.managerEmail, response.managerOffice);
+            teamBuilder.push(newManager)
+            if (response.finished === true) {
+                addEmployee();
+            } else {
+                writeToHTML();
+                console.log(response);
+            }
+        });
+};
+     
 function writeToHTML() {
-    console.log('Heres your new file!');
-    render(teamBuilder);
-    fs.writeFile('team.html', render(teamBuilder))
+    fs.writeFile("team.html", render(teamBuilder), err => err ? console.log(err) : console.log('Heres your new file!'))
 }
-writeToHTML();
+// writeToHTML();
+init();
