@@ -259,7 +259,7 @@ const createEngineer = () => {
                 addEmployee();
             } else {
                 writeToHTML();
-                console.log(response);
+                // console.log(response);
             };
         });
 };
@@ -293,14 +293,14 @@ function init() {
         .prompt(inputManager)
         .then(response => {
             // .then({})
-            console.log(response);
+            // console.log(response);
             let newManager = new Manager (response.managerName, response.managerId, response.managerEmail, response.managerOffice);
             teamBuilder.push(newManager)
             if (response.finished === true) {
                 addEmployee();
             } else {
                 writeToHTML();
-                console.log(response);
+                // console.log(response);
             }
         });
 };
