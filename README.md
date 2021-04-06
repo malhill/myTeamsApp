@@ -1,6 +1,8 @@
 # <center h1 align="center"> myTeamsApp </center>
 
-![alt text](ScreenCastify here)
+![Demo](./assets/ezgif.com-gif-maker.gif)
+
+![Snapshot](./assets/myTeamSnapshot.png "snapshot")
 
 The goal for this project is to create a webpage that provides basic employee information. 
 
